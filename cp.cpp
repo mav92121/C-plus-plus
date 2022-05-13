@@ -10,65 +10,60 @@
 // 20                2^n
 // #define fo(i,a,b) for(int i=a;i<=b;i++)
 #include <bits/stdc++.h>
+#define ll long long int
 // typedef unsigned long long int ll;
 #define endl "\n"
 using namespace std;
+void seive(int n)
+{
+    vector<int>v(n+1);
+    for(int i=2;i<=n;i++)
+    {
+        for(int j=i+i;j<=n;j+=i)
+        {
+            v[j]=1;
+        }
+    }
+    for(int i=2;i<=n;i++)
+    {
+        if(v[i]==0)cout<<i<<" ";
+    }
+    cout<<endl;
+}
+bool isPrime(int n)
+{
+    if(n==2) return true;
+    else if(n%2==0) return false;
+    else
+    {
+        bool check=true;
+        for(int i=2;i*i<=n;i++)
+        {
+            if(n%i==0)
+            {
+                check=false;
+                return false;
+            }
+        }
+        return true;
+    }
+}
 void solve()
 {
-   int n;
-   cin>>n;
-   int arr[n];
-   for(int i=0;i<n;i++) cin>>arr[i];
-   sort(arr,arr+n);
-   vector<int>v;
-   int count=1;
-   for(int i=0;i<n;i++)
-   {
-       if(arr[i+1]!=arr[i])
-       {
-           v.push_back(count);
-           count=1;
-       }
-       else 
-       {
-           count++;
-       }
-   }
-   int ans=0;
-    for(int i=0;i<v.size();i++) 
-   {
-       if(v[i]%2!=0)
-
-       {
-           ans++;
-           v[i]++;
-       } 
-   }
-   int cou=0;
-   for(int i=0;i<v.size();i++) 
-   {
-       if(v[i]%4==2)
-       {
-           cou++;
-       } 
-   }
-   if(cou%2!=0) ans+=2;
-   cout<<ans<<endl;
-
+      
 }
+
 int main()
 {
-    // ios_base::sync_with_stdio(false);cin.tie(0);
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    #endif
+// ios_base::sync_with_stdio(false);cin.tie(0);
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
     int t = 1;
     cin >> t;
     while (t--)
     {
         solve();
     }
-    return 0;
 }
-
